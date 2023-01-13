@@ -8,4 +8,8 @@ export default class Cart {
     getProducts() {
         return this.#products
     }
+
+    toString() {
+      return `{ products: [${this.#products.join(', ')}] }`
+    }
 }
