@@ -15,6 +15,10 @@ export default class Product {
         return this.#price
     }
 
+    setPrice(price) {
+        this.#price = price
+    }
+
     toString() {
         return `{ name: ${this.#name}, price: ${this.#price} }`
     }
