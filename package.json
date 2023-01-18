@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "DDD Sample JavaScript",
-  "main": "index.js",
+  "main": "lib/application/Application.js",
   "scripts": {
-    "app": "tsc & node ./src/ddd_bootcamp/application/Application.js",
+    "app": "tsc && node ./lib/ddd_bootcamp/application/Application.js",
+    "bank": "tsc && node ./lib/banking/application/Application.js",
     "test": "mocha test/**/*.spec.js"
   },
   "author": "",

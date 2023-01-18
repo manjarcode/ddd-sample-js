@@ -1,27 +1,37 @@
 import Item from './Item.js'
+import Order from './Order.js'
 
 export default class Cart {
     items = []
     events = []
+    #checkout = false
 
+    #checkoutGuard() {
+      if (this.#checkout) {
+        throw new Error('Cart is already checked out')
+      }      
+    }
     add(item) {
-        this.items.push(item)
+      this.#checkoutGuard()
+      this.items.push(item)
     }
 
-    delete(product) {
-        this.items = this.items.filter(ci => ci.getProduct() !== product)
-        this.events.push({
-          message:`Product ${product} was deleted from cart`, 
-          product: product
-        })
+    delete(item) {
+      this.#checkoutGuard()
+
+      this.items = this.items.filter(i => !i.equals(item))
+      this.events.push({
+        message:`Product ${product} was deleted from cart`, 
+        product: product
+      })
     }
 
     getProducts() {
-        return this.items
+      return this.items
     }
 
     getRemovedProducts() {
-        return this.events
+      return this.events
     }
     
     toString() {
@@ -32,4 +42,10 @@ export default class Cart {
       return this.items.every(i => other.items.find(j => i.equals(j)))
     }
 
+    checkout(){
+      this.#checkout = true
+
+      const products = this.items.map(i => i.getProduct())
+      return new Order(products)
+    }
 }

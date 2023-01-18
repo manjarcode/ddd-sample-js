@@ -4,7 +4,7 @@ import Item from '../domain/Item.js';
 import Price from '../domain/Price.js';
 import ApplyProductDiscount from '../domain/ApplyProductDiscount.js';
 
-class Application {
+export default class Application {
     run() {
         const cart1 = new Cart()
         const cart2 = new Cart()
