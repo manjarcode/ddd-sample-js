@@ -18,6 +18,7 @@ export default class Customer {
 
   setAddress(address) {
     this.address = address;
+    this.accounts.forEach(ac => ac.setAddress(address));
   }
   
   toString(identation: string = '') {

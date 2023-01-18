@@ -7,18 +7,20 @@ import ApplyProductDiscount from '../domain/ApplyProductDiscount.js';
 export default class Application {
     run() {
         const cart1 = new Cart()
-        const cart2 = new Cart()
 
-        const sonyHeadphone = new Product("Sony Wireless headphones", new Price(70))
+        const sonyHeadphone = new Product("Sony Wireless headphones", new Price(70), 1.3)
+        const applePencil = new Product("Apple Pencil", new Price(100),0.3)
 
-        const item1 = new Item(sonyHeadphone, 1)
-        const item2 = new Item(sonyHeadphone, 2)
+        const item1 = new Item(sonyHeadphone, 1, 10)
+        const item2 = new Item(applePencil, 2, 10)
         cart1.add(item1)
-        cart2.add(item2)
+        cart1.add(item2)
 
         
-        const discounter = new ApplyProductDiscount()
-        console.log(discounter.execute(sonyHeadphone.getName()).toString())
+        const order = cart1.checkout()
+        const shippingCost = order.getShippingCost()
+
+        console.log(`Shipping cost: ${shippingCost}`)
     }
 }
 

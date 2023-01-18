@@ -45,7 +45,6 @@ export default class Cart {
     checkout(){
       this.#checkout = true
 
-      const products = this.items.map(i => i.getProduct())
-      return new Order(products)
+      return new Order(this.items)
     }
 }
